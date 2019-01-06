@@ -34,7 +34,7 @@ class Student
      VALUES (?, ?)
      SQL
     DB[:conn].execute(sql, self.name, self.grade)
-    @id = DB[:conn].execute("SELECT id FROM students ORDER BY id DESC LIMIT 1")
+    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
   end
 
   def self.create(hash)
